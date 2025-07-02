@@ -629,10 +629,13 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
             } else if (!x.Flow.empty()) {
                 singleproxy["flow"] = x.Flow;
             }
-            if (!x.PublicKey.empty() && !x.ShortID.empty()) {
+            if (!x.PublicKey.empty()) {
                 singleproxy["reality-opts"]["public-key"] = x.PublicKey;
                 singleproxy["reality-opts"]["short-id"] = x.ShortID;
-                singleproxy["client-fingerprint"] = "random";
+                
+            }
+            if  (!x.clientfingerprint.empty() ) {
+                singleproxy["client-fingerprint"] =x.clientfingerprint;
             }
             if (!scv.is_undef())
                 singleproxy["skip-cert-verify"] = scv.get();
