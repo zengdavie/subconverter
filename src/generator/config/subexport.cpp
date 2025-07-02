@@ -568,7 +568,9 @@ void proxyToClash(std::vector<Proxy> &nodes, YAML::Node &yamlnode, const ProxyGr
             if (!x.HeartbeatInterval.empty())
                 singleproxy["heartbeat-interval"] = x.HeartbeatInterval;
             if (!x.Alpn.empty())
-                singleproxy["alpn"] = x.Alpn;
+                std::string alpnDecoded = UrlDecode(x.Alpn);
+                std::vector<std::string> alpnList = StringSplit(alpnDecoded, ',');
+                singleproxy["alpn"] = alpnList;
             if (!x.FastOpen.is_undef())
                 singleproxy["fast-open"] = x.FastOpen.get();
             if (!x.UdpRelayMode.empty())
