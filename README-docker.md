@@ -16,7 +16,7 @@ Or run in docker-compose:
 version: '3'
 services:
   subconverter:
-    image: metacubex/subconverter:latest
+    image: zengdavie/subconverter:latest
     container_name: subconverter
     ports:
       - "15051:25500"
